@@ -1,0 +1,96 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="paciente-componente-registro">
+  <template>
+    <main>
+        <section>
+            <div>
+                <br><label class="lb-dni">DNI:</label><input class="input-dni" type=text id="dni" value="{{dni::input}}">
+                <br><label class="lb-nombre">Nombre:</label><input class="input-nombre" type="text" id="nombre" value="{{nombre::input}}">
+                <br><label class="lb-apellido">Apellido:</label><input class="input-apellido" type="text" id="apellido" value="{{apellido::input}}">
+                <br> <label class="lb-edad">Edad:</label><input class="input-edad" type="number" id="edad" value="{{edad::input}}">
+                    
+                <br><label class="lb-sexo">Sexo</label>
+                <form>
+                    <input type="radio" name="sexo" value="{{sexo::input}}" checked> Masculino<br>
+                    <input type="radio" name="sexo" value="{{sexo::input}}"> Femenino<br>
+                    <input type="radio" name="sexo" value="{{sexo::input}}"> Otro  
+                  </form> 
+                  
+
+                <br> <label class="lb-fecha">Fecha Nacimiento:</label><input type="date"  class="input-fecha" id="fecha" value="{{fecha_nacimiento::input}}">
+                <br> <label class="lb-localidad">Localidad:</label><input class="input-localidad" type=text id="localidad"  value="{{localidad::input}}">
+                <br> <label class="lb-User">User:</label><input class="input-user" type=text id="user"  value="{{user::input}}">
+                <br> <label class="lb-password">Password:</label><input class="input-password" type=password id="password"  value="{{password::input}}">
+
+                <br><label class="lb-tratamiento">Tipo de tratamiento</label>
+                <form>
+                    <input type="radio" name="tratamiento" value="{{tratamiento::input}}" checked> Bulimia<br>
+                    <input type="radio" name="tratamiento" value="{{tratamiento::input}}"> Obesidad<br>
+                    <input type="radio" name="tratamiento" value="{{tratamiento::input}}"> Anorexia  
+                  </form> 
+                  
+            </div>
+
+            <br> <button class="btn-registrar" on-click="registrarPaciente">Registrar!</button>
+        </section>
+
+
+    </main>
+
+    
+    <style>
+      
+    </style>
+    
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class PacienteComponente extends Polymer.Element {
+      static get is() { return 'paciente-componente-registro'; }
+      static get properties() {
+          return{
+            pacientes:{
+                type:Object,
+                value:()=>{
+                    return{
+                        id:Number,
+                        dni:Number, 
+                        nombre: String,
+                        apellido:String,
+                        sexo:String,
+                        fecha_nacimento:Date,
+                        localidad:String,
+                        tratamiento:String,
+                        user:String,
+                        password:String
+                    }
+                }
+            },
+
+            pacientesRegistrados:{
+                    value(){
+                        return[
+                        ];
+                    }
+                    }, 
+
+          }
+        };
+
+        registrarPaciente(){
+            let arregloAuxiliar=[
+
+            ];
+
+        }
+      }
+    
+
+    window.customElements.define(PacienteComponente.is, PacienteComponente);
+  </script>
+</dom-module>
