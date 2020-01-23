@@ -1,0 +1,46 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link href="https://fonts.googleapis.com/css?family=Krub|Open+Sans:700,700i&display=swap" rel="stylesheet">
+
+<dom-module id="login-componente-button">
+  <template>
+   <div class="position-btn">
+
+  
+  <button class="btn-singup" >Sing UP!</button>
+   <div>
+  
+
+  <style>
+    .position-btn{
+       width: 75%;
+       text-align: center;
+       position: absolute;
+       top:450px;
+       font-family: 'Krub', sans-serif;
+      
+      }
+.btn-singup{
+      padding:15px;
+        border: solid 1px #ccc; 
+        width:20%;
+        border-radius: 10px;
+        font-family: 'Krub', sans-serif;
+        font-size: 20px;
+        color: black;
+}
+        </style>
+        </template>
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class LoginComponente extends Polymer.Element {
+      static get is() { return 'login-componente-button'; }
+      static get properties() {
+        
+        }
+    }
+    window.customElements.define(LoginComponente.is, LoginComponente);
+  </script>
+</dom-module>

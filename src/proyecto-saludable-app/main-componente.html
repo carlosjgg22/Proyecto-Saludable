@@ -1,0 +1,86 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link href="https://fonts.googleapis.com/css?family=Krub|Open+Sans:700,700i&display=swap" rel="stylesheet">
+
+<dom-module id="principal-componente">
+    <template>
+    
+    <main id="contenedor-principal"> 
+        <section>    
+            <div class="div-1">   
+                <p> Una dieta rica en verduras, frutas, pescado y frutos secos, nos ayuda:</p> 
+                    <ol class="items">
+                        <li>Mejorar el Cerebro</li>
+                        <li>Brindar Energía</li>
+                        <li>Reduce el Estrés</li>
+                        <li>Vigoriza los huesos</li>
+                        <li>Mejora el sistema digestivo</li>
+                      </ol>
+                    
+            </div>
+        </section>
+        <section>
+            <div class="div-2">   
+                
+                <img src="/src/assets/persona-animada-png-3.png" width="40%" align="left"> 
+                
+            </div>
+        </section>
+    </main>
+     <style>            
+
+    #contenedor-principal{
+    margin-top: 200px;
+    text-align: center;
+    background-color:#e2f2ff;
+    font-family: 'Krub', sans-serif;
+  
+    }
+
+    .div-1{
+        border-color: lightcoral;
+        width: 50%;
+        height: 75%;
+        position: absolute;
+        left:0px;
+        top:96px;
+        background-color:#e2f2ff;
+        font-size: 18px;
+    }
+
+    .div-2{
+        border-color: lightcoral;
+        width: 50%;
+        height: 75%;
+        background-color:#e2f2ff;
+        position:absolute;
+        right: 0px;
+        top:96px;
+    }
+
+    .items{
+        list-style: none;
+	
+        list-style-type: square;
+        background-position: left bottom;
+        padding-left: 70%;
+}
+    
+
+            
+     </style>
+   
+    </template>
+
+    <script>
+    
+    class PrincipalComponente extends Polymer.Element{
+            static get is() { return 'principal-componente'; }
+            static get properties() {    
+            };
+      }
+        
+    
+    window.customElements.define(PrincipalComponente.is, PrincipalComponente);
+    
+    </script>
+</dom-module>

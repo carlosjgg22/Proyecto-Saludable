@@ -1,0 +1,6 @@
+{
+  "name": "proyecto-saludable",
+  "short_name": "proyecto-saludable",
+  "start_url": "/",
+  "display": "standalone"
+}

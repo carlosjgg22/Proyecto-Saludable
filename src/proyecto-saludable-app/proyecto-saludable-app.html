@@ -1,0 +1,32 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="proyecto-saludable-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class ProyectoSaludableApp extends Polymer.Element {
+      static get is() { return 'proyecto-saludable-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'proyecto-saludable-app'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(ProyectoSaludableApp.is, ProyectoSaludableApp);
+  </script>
+</dom-module>
