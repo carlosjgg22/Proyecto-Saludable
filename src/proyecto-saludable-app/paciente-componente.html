@@ -11,24 +11,26 @@
                 <br> <label class="lb-edad">Edad:</label><input class="input-edad" type="number" id="edad" value="{{edad::input}}">
                     
                 <br><label class="lb-sexo">Sexo</label>
-                <form>
-                    <input type="radio" name="sexo" value="{{sexo::input}}" checked> Masculino<br>
-                    <input type="radio" name="sexo" value="{{sexo::input}}"> Femenino<br>
-                    <input type="radio" name="sexo" value="{{sexo::input}}"> Otro  
-                  </form> 
-                  
-
+                
+                <select value="{{sexo::input}}">
+                    <option selected >Seleccione</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="Otro">Otro</option>
+                  </select>
+              
                 <br> <label class="lb-fecha">Fecha Nacimiento:</label><input type="date"  class="input-fecha" id="fecha" value="{{fecha_nacimiento::input}}">
                 <br> <label class="lb-localidad">Localidad:</label><input class="input-localidad" type=text id="localidad"  value="{{localidad::input}}">
                 <br> <label class="lb-User">User:</label><input class="input-user" type=text id="user"  value="{{user::input}}">
                 <br> <label class="lb-password">Password:</label><input class="input-password" type=password id="password"  value="{{password::input}}">
 
                 <br><label class="lb-tratamiento">Tipo de tratamiento</label>
-                <form>
-                    <input type="radio" name="tratamiento" value="{{tratamiento::input}}" checked> Bulimia<br>
-                    <input type="radio" name="tratamiento" value="{{tratamiento::input}}"> Obesidad<br>
-                    <input type="radio" name="tratamiento" value="{{tratamiento::input}}"> Anorexia  
-                  </form> 
+                <select value="{{tratamiento::input}}">
+                    <option selected >Seleccione Tratamiento</option>
+                    <option value="Obesidad">Obesidad</option>
+                    <option value="Bulimia">Femenino</option>
+                    <option value="Anorexia">Anorexia</option>
+                  </select>
                   
             </div>
 
@@ -62,6 +64,7 @@
                         dni:Number, 
                         nombre: String,
                         apellido:String,
+                        edad:Number,
                         sexo:String,
                         fecha_nacimento:Date,
                         localidad:String,
@@ -83,12 +86,32 @@
         };
 
         registrarPaciente(){
-            let arregloAuxiliar=[
+            let arregloAuxiliar={
+                dni: this.dni, 
+                nombre:this.nombre,
+                apellido:this.apellido, 
+                edad:this.edad, 
+                sexo:this.sexo,
+                fecha:this.fecha_nacimento,
+                localidad:this.localidad, 
+                tratamiento:this.tratamiento,
+                user:this.user,
+                password: this.password  
+            };
 
-            ];
+            this.push('pacientesRegistrados',arregloAuxiliar); 
+
+            console.log(this.pacientesRegistrados);
+            //guardo los registros en local storage
+
+            var listaJson= JSON.stringify(this.pacientesRegistrados); 
+            localStorage.setItem("listapacientes", listaJson);
+            console.log(listaJson);
 
         }
       }
+
+    
     
 
     window.customElements.define(PacienteComponente.is, PacienteComponente);

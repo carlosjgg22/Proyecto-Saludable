@@ -1,0 +1,129 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="registrar-dieta-componente">
+ <template>
+
+<br>Comida:
+ <select id="tipocomida" value="{{tipo::input}}" on-change="validarCampos"> 
+     <option selected>Seleccione el tipo de comida</option>
+     <option value="Desayuno">Desayuno</option>
+     <option value="Almuerzo">Almuerzo</option>
+     <option value="Merienda">Merienda</option>
+     <option value="Cena">Cena</option>
+ </select>
+
+ <br>Comida Principal<input type="text" name="principal"  id="secundaria" value="{{comidaprincipal::input}}">
+ <br>Comida Secundaria<input type="text" name="secundaria" id="secundaria" value="{{comidasecundaria::input}}">
+ <br>Bebida<input type="text" name="bebida" id="bebida" value="{{bebida::input}}">
+ <br>¿Ingirió Postre:?<select id="ingiriopostre" name="ingiriopostre" value="{{ingiriopostre::input}}" on-change="validacionPostre">
+    <option selected>Seleccione</option>
+    <option value="Si">Si</option>
+    <option value="No">No</option>
+ </select>
+ <br>Postre:<input type="text" id="postre" name="postre" value="{{postre::input}}">
+<br>   ¿Querías Ingerir Algo más?
+ <select id="otro" name="otro" value="{{otroalimento::input}}" on-change="validacionIngerirOtro"> 
+    <option selected>Seleccione</option>
+    <option value="Si">Si</option>
+    <option value="No">No</option>
+</select>
+<br>Alimento deseado:<input type="text" id="alimento" name="alimento" value="{{alimentodeseado::input}}">
+
+<br> Estado:
+    <select id="estatus" name="estatus" value="{{estatus::input}}">
+        <option selected>Seleccione</option>
+        <option value="Hambriento">Hambriento</option>
+        <option value="Satisfecho">Satisfecho</option>
+        </select>
+
+        <button on-click="guardarDieta">Guardar</button>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class RegistrarDieta extends Polymer.Element {
+      static get is() { return 'registrar-dieta-componente'; }
+      static get properties() {
+        return{
+            dieta:{
+                type:Object,
+                value:()=>{
+                return{
+                        tipo:String,
+                        comidaprincipal:String, 
+                        comidasecundaria: String,
+                        bebida:String,
+                        ingiriopostre:String,
+                        postre:String,
+                        otroalimento:String,
+                        alimentodeseado:String,
+                        estatus:String, 
+                        fechaRegistro: new Date(Date.now) 
+                }
+            } 
+          }, 
+
+          dietaRegistros:{
+                    value(){
+                        return[
+                        ];
+                    }
+                    
+                    }, 
+        
+      }
+    }
+
+    validarCampos(){
+       if(this.$.tipocomida.value=='Almuerzo'||this.$.tipocomida.value=='Cena'){
+           this.$.ingiriopostre.disabled=false;
+       }else{
+           this.$.ingiriopostre.disabled=true;
+           this.$.postre.disabled=true;
+       }
+    }
+
+    validacionPostre(){
+        if(this.$.ingiriopostre.value=='Si'){
+            this.$.postre.disabled=false;
+        }else{
+            this.$.postre.disabled=true;
+        }
+    }
+
+    validacionIngerirOtro(){
+        if(this.$.otro.value=='Si'){
+            this.$.alimento.disabled=false;
+        }else{
+            this.$.alimento.disabled=true;
+        }
+    }
+
+      guardarDieta(){
+        let arreloDieta={
+                tipo:this.tipo,
+                principal:this.comidaprincipal,
+                secundaria:this.comidasecundaria,
+                bebida:this.bebida, 
+                ingirio_postre:this.ingiriopostre,
+                postre:this.postre,
+                alimentoextra:this.otroalimento, 
+                alimento_desado:this.alimentodeseado, 
+                fechaRegistro: this.fechaRegistro,
+                estatus:this.estatus
+
+            }
+
+        this.push('dietaRegistros',arreloDieta);
+        console.log(this.dietaRegistros)
+      }
+
+    }
+
+
+    window.customElements.define(RegistrarDieta.is, RegistrarDieta);
+  </script>
+</dom-module>
