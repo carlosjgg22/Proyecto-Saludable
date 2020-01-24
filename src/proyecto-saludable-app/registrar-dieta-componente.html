@@ -1,9 +1,12 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="/src/proyecto-saludable-app/login-componente-input.html">
+
 
 <dom-module id="registrar-dieta-componente">
- <template>
-
-<br>Comida:
+ <template>    
+<main>
+    <div>
+    <br>Comida:
  <select id="tipocomida" value="{{tipo::input}}" on-change="validarCampos"> 
      <option selected>Seleccione el tipo de comida</option>
      <option value="Desayuno">Desayuno</option>
@@ -35,8 +38,13 @@
         <option value="Hambriento">Hambriento</option>
         <option value="Satisfecho">Satisfecho</option>
         </select>
-
+    
+        <login-componente-input usuario="{{usuario}}"></login-componente-input> 
         <button on-click="guardarDieta">Guardar</button>
+
+        <button on-click="mostrarRegistros">Mostrar</button>
+
+    </div>
   </template>
 
   <script>
@@ -61,9 +69,19 @@
                         otroalimento:String,
                         alimentodeseado:String,
                         estatus:String, 
-                        fechaRegistro: new Date(Date.now) 
+                        fechaRegistro: Date
                 }
-            } 
+            }
+            },
+
+            persona:{
+                type:Object,
+                value:()=>{
+                    return{
+                        usuario:String,
+                        password:String,
+                    }
+                }
           }, 
 
           dietaRegistros:{
@@ -74,7 +92,7 @@
                     
                     }, 
         
-      }
+      };
     }
 
     validarCampos(){
@@ -103,6 +121,7 @@
     }
 
       guardarDieta(){
+      
         let arreloDieta={
                 tipo:this.tipo,
                 principal:this.comidaprincipal,
@@ -112,13 +131,25 @@
                 postre:this.postre,
                 alimentoextra:this.otroalimento, 
                 alimento_desado:this.alimentodeseado, 
-                fechaRegistro: this.fechaRegistro,
+                fecha:this.fechaRegistro,
                 estatus:this.estatus
 
             }
 
         this.push('dietaRegistros',arreloDieta);
         console.log(this.dietaRegistros)
+
+        var listaJsonDieta= JSON.stringify(this.dietaRegistros); 
+            localStorage.setItem("listadieta", listaJsonDieta);
+
+            
+
+      }
+
+      mostrarRegistros(){
+        var registros=JSON.parse(localStorage.getItem("listadieta"));
+
+        console.log(registros);
       }
 
     }

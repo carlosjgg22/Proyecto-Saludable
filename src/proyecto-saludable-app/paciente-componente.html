@@ -2,9 +2,10 @@
 
 <dom-module id="paciente-componente-registro">
   <template>
-    <main>
-        <section>
+  
+    <main class="registrar-paciente">
             <div>
+                <h1>Ingrese Datos del Paciente</h1>
                 <br><label class="lb-dni">DNI:</label><input class="input-dni" type=text id="dni" value="{{dni::input}}">
                 <br><label class="lb-nombre">Nombre:</label><input class="input-nombre" type="text" id="nombre" value="{{nombre::input}}">
                 <br><label class="lb-apellido">Apellido:</label><input class="input-apellido" type="text" id="apellido" value="{{apellido::input}}">
@@ -28,21 +29,27 @@
                 <select value="{{tratamiento::input}}">
                     <option selected >Seleccione Tratamiento</option>
                     <option value="Obesidad">Obesidad</option>
-                    <option value="Bulimia">Femenino</option>
+                    <option value="Bulimia">Bulimia</option>
                     <option value="Anorexia">Anorexia</option>
                   </select>
                   
             </div>
 
             <br> <button class="btn-registrar" on-click="registrarPaciente">Registrar!</button>
-        </section>
-
-
-    </main>
-
-    
+        
+        </main>
     <style>
-      
+      .registrar-paciente{
+     text-align: center;
+    background-color:#e2f2ff;
+    font-family: 'Krub', sans-serif;
+    width: 100%;
+    height: 75%;
+    position:absolute;
+    top:96px;
+    bottom: 100px;
+      }
+
     </style>
     
   </template>
@@ -101,12 +108,11 @@
 
             this.push('pacientesRegistrados',arregloAuxiliar); 
 
-            console.log(this.pacientesRegistrados);
+            //console.log(this.pacientesRegistrados);
             //guardo los registros en local storage
 
             var listaJson= JSON.stringify(this.pacientesRegistrados); 
             localStorage.setItem("listapacientes", listaJson);
-            console.log(listaJson);
 
         }
       }

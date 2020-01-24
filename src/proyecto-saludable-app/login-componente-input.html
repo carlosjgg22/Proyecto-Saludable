@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="stylesheet" href="/src/proyecto-saludable-app/paciente-componente.html">
 
 <dom-module id="login-componente-input">
     <template>
@@ -6,8 +7,8 @@
          <section>
              <div class="login">
                 <div class="inputs-container">
-                User: <input type="text" class="input-name" name="input-user">
-                 Password:<input type="password" class="input-password" name="input-password">   
+                 <br>User: <input type="text" class="input-name" name="input-user" value="{{usuario::input}}" required >
+                 <br>Password:<input type="password" class="input-password" name="input-password" value="{{password::input}}" required >   
                 </div>                 
              </div>
             <button class="btn-singup" class="input-name" on-click="validarUsuario"> SingUP</button> 
@@ -31,17 +32,30 @@
  }
 
  
- .btn-singup, .input-name, .input-password{
+ .btn-singup, .input-name{
         padding:2px;
         border: solid 1px #ccc; 
-        width:10%;
+        width:15%;
         border-radius: 20px;
         font-family: 'Krub', sans-serif;
         font-size: 20px;
         margin-top: 70px;
+        margin-left: 30px;
         color: black;
         
 }
+
+.input-password{
+        padding:2px;
+        border: solid 1px #ccc; 
+        width:15%;
+        border-radius: 20px;
+        font-family: 'Krub', sans-serif;
+        font-size: 20px;
+        margin-top: 20px;
+        margin-left: 10px;
+        color: black;
+} 
 
 .btn-singup{
         padding:5px;
@@ -64,17 +78,42 @@
         static get is() { return 'login-componente-input'; }
         static get properties() {
           return {
-            prop1: {
-              type: String,
-              value: 'proyecto-saludable-app'
-            }
-          };
+            user:{
+                type:Object,
+                value:()=>{
+                    return{
+                        usuario:String,
+                        password:String,
+                    }
+                }
+            },
+            };
+          
         }
           validarUsuario(){
-              
+          ///obtengo la lista de pacientes registrados desde el componente pacientes
+          //y la paso una lista de objetos
+           
 
+           if(this.usuario==undefined&&this.password==undefined){
+            alert("Debe Ingresar datos de usuario válidos")
+           }else{
+            var nuevo=JSON.parse(localStorage.getItem("listapacientes"));
+    
+            nuevo.forEach(element =>{
+                if(element.user==this.usuario && element.password==this.password){
+                    alert("usuario y contraseña válidos")
+                    window.location.assign("/src/proyecto-saludable-app/registrardieta.html")
+                }
+               
+                }
+                
+                );
           }
+
+
         }
+      }
       
   
       window.customElements.define(LoginComponentInput.is, LoginComponentInput);
