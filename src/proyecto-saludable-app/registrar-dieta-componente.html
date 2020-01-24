@@ -4,11 +4,12 @@
 
 <dom-module id="registrar-dieta-componente">
  <template>    
-<main>
+<main class="main-contenedor">
+    <h2>Datos de la Dieta</h2>
     <div>
     <br>Comida:
  <select id="tipocomida" value="{{tipo::input}}" on-change="validarCampos"> 
-     <option selected>Seleccione el tipo de comida</option>
+     <option selected>Seleccione</option>
      <option value="Desayuno">Desayuno</option>
      <option value="Almuerzo">Almuerzo</option>
      <option value="Merienda">Merienda</option>
@@ -38,14 +39,50 @@
         <option value="Hambriento">Hambriento</option>
         <option value="Satisfecho">Satisfecho</option>
         </select>
-    
-        <login-componente-input usuario="{{usuario}}"></login-componente-input> 
-        <button on-click="guardarDieta">Guardar</button>
+    <br>
+        <button class="btn-guardar" on-click="guardarDieta">Guardar</button>
 
-        <button on-click="mostrarRegistros">Mostrar</button>
-
+       
     </div>
-  </template>
+<style>
+    .main-contenedor{
+    text-align: center;
+    background-color:#e2f2ff;
+    font-family: 'Krub', sans-serif;
+    width: 100%;
+    height: 75%;
+    position:absolute;
+    top:96px;
+    bottom: 100px;
+      }
+
+      #estatus, #alimento, #postre, #otro, #secundaria,#tipocomida, #ingiriopostre, #principal, #bebida{
+        padding:2px;
+        border: solid 1px #ccc; 
+        width:15%;
+        border-radius: 20px;
+        font-family: 'Krub', sans-serif;
+        font-size: 15px;
+        margin-top: 10px;
+        margin-left: 10px;
+        color: black;
+      }
+
+
+      .btn-guardar {
+        padding:2px;
+        border: solid 1px #ccc; 
+        width:15%;
+        border-radius: 20px;
+        font-family: 'Krub', sans-serif;
+        font-size: 15px;
+        margin-top: 50px;
+        margin-left: 30px;
+        color: black;
+        
+}
+</style>
+</template>
 
   <script>
     /**

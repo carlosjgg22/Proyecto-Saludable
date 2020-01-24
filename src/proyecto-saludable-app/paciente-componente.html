@@ -13,7 +13,7 @@
                     
                 <br><label class="lb-sexo">Sexo</label>
                 
-                <select value="{{sexo::input}}">
+                <select value="{{sexo::input}}" id="sexo">
                     <option selected >Seleccione</option>
                     <option value="Masculino">Masculino</option>
                     <option value="Femenino">Femenino</option>
@@ -26,7 +26,7 @@
                 <br> <label class="lb-password">Password:</label><input class="input-password" type=password id="password"  value="{{password::input}}">
 
                 <br><label class="lb-tratamiento">Tipo de tratamiento</label>
-                <select value="{{tratamiento::input}}">
+                <select value="{{tratamiento::input}}" id="tratamiento">
                     <option selected >Seleccione Tratamiento</option>
                     <option value="Obesidad">Obesidad</option>
                     <option value="Bulimia">Bulimia</option>
@@ -50,6 +50,29 @@
     bottom: 100px;
       }
 
+#dni, #nombre, #apellido, #sexo, #edad, #tratamiento, #user, #password,#localidad, #fecha{
+    padding:2px;
+        border: solid 1px #ccc; 
+        width:15%;
+        border-radius: 20px;
+        font-family: 'Krub', sans-serif;
+        font-size: 15px;
+        margin-top: 5px;
+        margin-left: 10px;
+        color: black;
+        }
+      
+.btn-registrar{
+ 
+      padding:15px;
+        border: solid 1px #ccc; 
+        width:20%;
+        border-radius: 10px;
+        font-family: 'Krub', sans-serif;
+        font-size: 20px;
+        color: black;
+
+}
     </style>
     
   </template>
@@ -93,7 +116,9 @@
         };
 
         registrarPaciente(){
-            let arregloAuxiliar={
+var condicion=false;
+
+  let auxiliar={
                 dni: this.dni, 
                 nombre:this.nombre,
                 apellido:this.apellido, 
@@ -106,20 +131,48 @@
                 password: this.password  
             };
 
-            this.push('pacientesRegistrados',arregloAuxiliar); 
+if(this.dni,this.nombre,this.edad,this.sexo,this.fecha_nacimento,this.localidad,this.tratamiento,this.password==undefined){
+            alert("Debe Ingresar todos los datos del paciente")
+}else{
+if(this.pacientesRegistrados.length<=0){
+  this.push('pacientesRegistrados',auxiliar) 
+  console.log(this.pacientesRegistrados)
 
-            //console.log(this.pacientesRegistrados);
+}
+/*
+else{
+
+  this.pacientesRegistrados.forEach(element => {
+  console.log("estoy aqui dentro del for")
+  if(element.user==auxiliar.user){
+    this.condicion=true;
+    alert('El usuario '+this.user+'ya esta asignado a otro paciente')
+  }
+
+
+});
+ 
+  console.log(this.condicion)
+  if(!this.condicion){
+  this.push('pacientesRegistrados',auxiliar)
+}
+ */
+  
+  
+//console.log(this.pacientesRegistrados)
+
+
+
             //guardo los registros en local storage
 
-            var listaJson= JSON.stringify(this.pacientesRegistrados); 
+     var listaJson= JSON.stringify(this.pacientesRegistrados); 
             localStorage.setItem("listapacientes", listaJson);
 
-        }
-      }
-
+  }   
+} 
     
+    }
     
-
     window.customElements.define(PacienteComponente.is, PacienteComponente);
-  </script>
+  </script> 
 </dom-module>

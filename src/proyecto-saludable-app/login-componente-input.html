@@ -38,7 +38,8 @@
         width:15%;
         border-radius: 20px;
         font-family: 'Krub', sans-serif;
-        font-size: 20px;
+        font-size: 15px;
+        
         margin-top: 70px;
         margin-left: 30px;
         color: black;
@@ -51,7 +52,7 @@
         width:15%;
         border-radius: 20px;
         font-family: 'Krub', sans-serif;
-        font-size: 20px;
+        font-size: 15px;
         margin-top: 20px;
         margin-left: 10px;
         color: black;
@@ -95,20 +96,27 @@
           //y la paso una lista de objetos
            
 
-           if(this.usuario==undefined&&this.password==undefined){
+           if(this.usuario==undefined||this.password==undefined){
             alert("Debe Ingresar datos de usuario válidos")
            }else{
             var nuevo=JSON.parse(localStorage.getItem("listapacientes"));
-    
+          
             nuevo.forEach(element =>{
                 if(element.user==this.usuario && element.password==this.password){
-                    alert("usuario y contraseña válidos")
+                   
+                    
+                    var usuarioLogueado= JSON.stringify(this.user); 
+                    localStorage.setItem("listalogueo", usuarioLogueado);
+
                     window.location.assign("/src/proyecto-saludable-app/registrardieta.html")
+                    alert("Bienvenido!")
                 }
                
                 }
+               
                 
                 );
+                 
           }
 
 
